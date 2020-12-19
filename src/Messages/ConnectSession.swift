@@ -19,7 +19,7 @@ public final class ConnectSession {
     public var host: String
     
     /// The requested port.
-    public let port: Int
+    public var port: Int
     
     /// The rule to use to connect to remote.
     public var matchedRule: Rule?
