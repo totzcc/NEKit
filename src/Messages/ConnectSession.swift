@@ -21,6 +21,8 @@ public final class ConnectSession {
     /// The requested port.
     public var port: Int
     
+    public var blockAfterTime: TimeInterval?
+    
     /// The rule to use to connect to remote.
     public var matchedRule: Rule?
     

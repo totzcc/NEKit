@@ -105,7 +105,13 @@ public class SOCKS5ProxySocket: ProxySocket {
 
         switch readStatus {
         case .forwarding:
-            delegate?.didRead(data: data, from: self)
+            let blockAfterTime = session?.blockAfterTime
+            if blockAfterTime == nil || blockAfterTime! > Date().timeIntervalSince1970 {
+                delegate?.didRead(data: data, from: self)
+            } else {
+//                print("Block upload data \(data)")
+                self.socket.readData()
+            }
         case .readingVersionIdentifierAndNumberOfMethods:
             data.withUnsafeBytes { pointer in
                 let p = pointer.bindMemory(to: Int8.self)
